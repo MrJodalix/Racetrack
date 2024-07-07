@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="456.0" prefWidth="820.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.UserInterfaceController">
+    <top>
+        <MenuBar fx:id="menuBar" prefHeight="24.0" prefWidth="758.0" BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                  <Menu mnemonicParsing="false" text="Unspecified Menu">
+                    <items>
+                      <MenuItem mnemonicParsing="false" text="Action 1" />
+                    </items>
+                  </Menu>
+                        <MenuItem fx:id="miNG" mnemonicParsing="false" onAction="#initStartGame" text="New Race" />
+                        <MenuItem fx:id="miLG" mnemonicParsing="false" onAction="#initLoadGame" text="Load Game" />
+                        <MenuItem fx:id="miSG" mnemonicParsing="false" onAction="#initSaveGame" text="Save Race" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="miQG" mnemonicParsing="false" onAction="#closeGame" text="Close Racetrack" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Animation Time">
+                    <items>
+                        <RadioMenuItem fx:id="rmiSS" mnemonicParsing="false" text="Slow Speed">
+                            <toggleGroup>
+                                <ToggleGroup fx:id="tg" />
+                            </toggleGroup>
+                        </RadioMenuItem>
+                        <RadioMenuItem fx:id="rmiMS" mnemonicParsing="false" text="Mid Speed" toggleGroup="$tg" />
+                        <RadioMenuItem fx:id="rmiHS" mnemonicParsing="false" text="High Speed" toggleGroup="$tg" />
+                        <RadioMenuItem fx:id="rmiNS" mnemonicParsing="false" selected="true" text="No Speed" toggleGroup="$tg" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Editor">
+                    <items>
+                        <MenuItem fx:id="miSE" mnemonicParsing="false" onAction="#initEditor" text="Start Editor" />
+                        <MenuItem fx:id="miNME" mnemonicParsing="false" onAction="#initNewMapEditor" text="New Map" />
+                        <MenuItem fx:id="miLME" mnemonicParsing="false" onAction="#initLoadGame" text="Load Map" />
+                        <MenuItem fx:id="miSME" mnemonicParsing="false" onAction="#initSaveGame" text="Save Map" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                    <items>
+                        <MenuItem fx:id="miHelp" mnemonicParsing="false" text="Instructionletter" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+
+    <right>
+        <VBox fx:id="VBxRight" alignment="CENTER" prefHeight="431.0" prefWidth="135.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label fx:id="lblstcCurrPlayer" alignment="CENTER" text="Current Player" textAlignment="CENTER">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </VBox.margin>
+                </Label>
+                <Label fx:id="lblCurrentPlayer" text="Player 1" textAlignment="CENTER">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </VBox.margin>
+                </Label>
+                <Label fx:id="lblPickStartPlayer" alignment="CENTER" layoutX="15.0" layoutY="106.0" prefHeight="97.0" prefWidth="135.0" text="Please, select&#10;your start &#10;position!" textAlignment="CENTER" wrapText="true">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </VBox.margin>
+                </Label>
+                <Label fx:id="lblNextMovePlayer" alignment="CENTER" layoutX="15.0" layoutY="127.0" prefHeight="97.0" prefWidth="135.0" text="Please, select&#10;your next &#10;position!" textAlignment="CENTER" wrapText="true">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Label>
+                <Label fx:id="lblOneOption" alignment="CENTER" layoutX="10.0" layoutY="184.0" prefWidth="135.0" text="Sorry, you are out of the field!&#10;You have only this one option!&#10;Please take it!" textAlignment="CENTER" wrapText="true">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Label>
+                <ImageView fx:id="imgCurrPlayer" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="0" GridPane.valignment="CENTER">
+                    <image>
+                        <Image url="@img/red.png" />
+                    </image>
+                </ImageView>
+                <Label fx:id="lblWinner" text="Winner&#10;is&#10;Player 1" textAlignment="CENTER">
+                    <font>
+                        <Font size="24.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </VBox.margin>
+                </Label>
+            </children>
+            <BorderPane.margin>
+                <Insets />
+            </BorderPane.margin>
+        </VBox>
+    </right>
+    <left>
+        <HBox fx:id="HBxLeft" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0">
+            <children>
+                <VBox fx:id="VBxLeftPlayer" alignment="CENTER" prefHeight="41.0" prefWidth="200.0">
+                    <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0">
+                            <children>
+                                <Label fx:id="txtstafldPlayer0" prefWidth="55.0" text="Player 1" textFill="RED">
+                                    <HBox.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </HBox.margin>
+                                </Label>
+                                <ChoiceBox fx:id="playerStatusBox0" onMouseMoved="#checkOneActive" prefWidth="130.0">
+                                    <HBox.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </HBox.margin>
+                                </ChoiceBox>
+                            </children>
+                            <VBox.margin>
+                                <Insets left="5.0" right="5.0" top="5.0" />
+                            </VBox.margin>
+                        </HBox>
+                        <TextField fx:id="txtfldPlayer0" promptText="Player 1">
+                            <VBox.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" />
+                            </VBox.margin>
+                        </TextField>
+                        <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0">
+                            <VBox.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </VBox.margin>
+                            <children>
+                                <Label fx:id="txtstafldPlayer0" prefWidth="55.0" text="Player 2" textFill="#000fff">
+                                    <HBox.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </HBox.margin>
+                                </Label>
+                                <ChoiceBox fx:id="playerStatusBox1" onMouseClicked="#checkOneActive" onMouseMoved="#checkOneActive" prefWidth="130.0">
+                                    <HBox.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </HBox.margin>
+                                </ChoiceBox>
+                            </children>
+                        </HBox>
+                        <TextField fx:id="txtfldPlayer1" promptText="Player 2">
+                            <VBox.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" />
+                            </VBox.margin>
+                        </TextField>
+                        <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0">
+                            <children>
+                                <Label fx:id="txtstafldPlayer1" prefWidth="55.0" text="Player 3" textFill="#04d300">
+                                    <HBox.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </HBox.margin>
+                                </Label>
+                                <ChoiceBox fx:id="playerStatusBox2" onMouseMoved="#checkOneActive" prefWidth="130.0">
+                                    <HBox.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </HBox.margin>
+                                </ChoiceBox>
+                            </children>
+                            <VBox.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </VBox.margin>
+                        </HBox>
+                        <TextField fx:id="txtfldPlayer2" promptText="Player 3">
+                            <VBox.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" />
+                            </VBox.margin>
+                        </TextField>
+                        <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0">
+                            <children>
+                                <Label fx:id="txtstafldPlayer3" prefWidth="55.0" text="Player 4" textFill="#ff00ee">
+                                    <HBox.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </HBox.margin>
+                                </Label>
+                                <ChoiceBox fx:id="playerStatusBox3" onMouseMoved="#checkOneActive" prefWidth="130.0">
+                                    <HBox.margin>
+                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                    </HBox.margin>
+                                </ChoiceBox>
+                            </children>
+                            <VBox.margin>
+                                <Insets left="5.0" right="5.0" top="5.0" />
+                            </VBox.margin>
+                        </HBox>
+                        <TextField fx:id="txtfldPlayer3" promptText="Player 4">
+                            <VBox.margin>
+                                <Insets bottom="50.0" left="5.0" right="5.0" />
+                            </VBox.margin>
+                        </TextField>
+                        <Button fx:id="btnStartRace" mnemonicParsing="false" onAction="#startGame" onMouseEntered="#checkOneActive" text="StartRace" />
+                    </children>
+                </VBox>
+                <VBox fx:id="VBxLeftLoad" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
+                    <children>
+                        <ListView fx:id="saveGames" editable="true" prefHeight="200.0" prefWidth="200.0">
+                            <VBox.margin>
+                                <Insets bottom="2.0" left="15.0" right="2.0" top="2.0" />
+                            </VBox.margin>
+                        </ListView>
+                        <Button fx:id="btnLoad" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#loadGame" text="Load" textAlignment="CENTER">
+                            <VBox.margin>
+                                <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                            </VBox.margin>
+                        </Button>
+                    </children>
+                </VBox>
+                <VBox fx:id="VBxLeftSave" alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
+                    <children>
+                        <Label fx:id="lblstcCheck" text="You wanna save these Track?&#10;Check it!" textAlignment="CENTER" />
+                        <Button fx:id="btnCheck" mnemonicParsing="false" onAction="#checkTrack" text="Check" />
+                        <Label fx:id="lblTrackValid" text="Wonderful!" />
+                        <TextField fx:id="saveName" alignment="CENTER" promptText="Name the Race">
+                            <VBox.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </VBox.margin>
+                        </TextField>
+                        <Button fx:id="btnSave" mnemonicParsing="false" onAction="#saveGame" text="Save">
+                            <VBox.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </VBox.margin>
+                        </Button>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+    </left>
+    <center>
+        <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <center>
+                <GridPane fx:id="grdPn" alignment="CENTER" blendMode="SRC_ATOP" depthTest="DISABLE" hgap="2.0" onMouseClicked="#onMouseClickGridPane" pickOnBounds="false" prefHeight="30.0" prefWidth="30.0" scaleShape="false" vgap="2.0" BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="30.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <BorderPane.margin>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                    </BorderPane.margin>
+                    <opaqueInsets>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                    </opaqueInsets>
+                    <rotationAxis>
+                        <Point3D />
+                    </rotationAxis>
+                    <padding>
+                        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                    </padding>
+                </GridPane>
+            </center>
+            <top>
+                <HBox fx:id="HBxTopGrid" alignment="CENTER" BorderPane.alignment="CENTER">
+                    <children>
+                        <Button fx:id="deleteRowAbove" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deleteRow" prefHeight="40.0" prefWidth="40.0" text="-">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets right="50.0" />
+                            </HBox.margin>
+                        </Button>
+                        <Button fx:id="addRowAbove" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addRow" prefHeight="40.0" prefWidth="40.0" text="+">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets left="50.0" />
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                    <BorderPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </BorderPane.margin>
+                    <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </padding>
+                </HBox>
+            </top>
+            <bottom>
+                <HBox fx:id="HBxDownGrid" alignment="CENTER" BorderPane.alignment="CENTER">
+                    <children>
+                        <Button fx:id="deleteRowBelow" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deleteRow" prefHeight="40.0" prefWidth="40.0" text="-" textAlignment="CENTER">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets right="50.0" />
+                            </HBox.margin>
+                        </Button>
+                        <Button fx:id="addRowBelow" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addRow" prefHeight="40.0" prefWidth="40.0" text="+">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <HBox.margin>
+                                <Insets left="50.0" />
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                    <BorderPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </BorderPane.margin>
+                    <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </padding>
+                </HBox>
+            </bottom>
+            <left>
+                <VBox fx:id="VBxLeftGrid" alignment="CENTER" BorderPane.alignment="CENTER">
+                    <children>
+                        <Button fx:id="addColumnLeft" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addCol" prefHeight="40.0" prefWidth="40.0" text="+" textAlignment="CENTER">
+                            <VBox.margin>
+                                <Insets bottom="50.0" />
+                            </VBox.margin>
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="deleteColumnLeft" cache="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deleteCol" prefHeight="40.0" prefWidth="40.0" text="-" textAlignment="CENTER">
+                            <VBox.margin>
+                                <Insets top="50.0" />
+                            </VBox.margin>
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Button>
+                    </children>
+                    <BorderPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </BorderPane.margin>
+                    <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </padding>
+                </VBox>
+            </left>
+            <right>
+                <VBox fx:id="VBxRightGrid" alignment="CENTER" BorderPane.alignment="CENTER">
+                    <children>
+                        <Button fx:id="addColumnRight" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addCol" prefHeight="40.0" prefWidth="40.0" text="+">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets bottom="50.0" />
+                            </VBox.margin>
+                        </Button>
+                        <Button fx:id="deleteColumnRight" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deleteCol" prefHeight="40.0" prefWidth="40.0" text="-">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets top="50.0" />
+                            </VBox.margin>
+                        </Button>
+                    </children>
+                    <BorderPane.margin>
+                        <Insets />
+                    </BorderPane.margin>
+                    <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </padding>
+                </VBox>
+            </right>
+        </BorderPane>
+    </center>
+</BorderPane>
